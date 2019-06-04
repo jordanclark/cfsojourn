@@ -1,17 +1,17 @@
 {
     "name":"cfsojourn",
     "slug":"cfsojourn",
-    "version":"0.5.0",
+    "version":"0.5.1",
     "author":"Jordan Clark <jordanclark@gmail.com>",
     "keywords":[
-		"session management",
-		"client management",
-		"session",
-		"client"
+        "session management",
+        "client management",
+        "session",
+        "client"
     ],
     "shortDescription":"Custom ColdFusion session mananagement",
     "type":"modules",
-    "location":"jordanclark/cfsojourn#v0.5.0",
+    "location":"jordanclark/cfsojourn#v0.5.1",
     "repository":{
         "URL":"https://github.com/jordanclark/cfsojourn.git",
         "type":"GIT"

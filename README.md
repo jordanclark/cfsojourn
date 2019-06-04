@@ -1,10 +1,10 @@
 ```
-                        __              _                            
+        __              _                            
   ___  / _| ___   ___  (_)  ___   _   _  _ __  _ __  
  / __|| |_ / __| / _ \ | | / _ \ | | | || '__|| '_ \ 
 | (__ |  _|\__ \| (_) || || (_) || |_| || |   | | | |
  \___||_|  |___/ \___/_/ | \___/  \__,_||_|   |_| |_|
-                     |__/                                                 
+                     |__/                            
 ```
 # cfsojourn
 Replace ColdFusion session/client management with the sojourn framework, save sessions to the database, or mongodb or somewhere else

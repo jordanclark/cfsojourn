@@ -1,4 +1,4 @@
-component output="false" {
+component {
 
 	function init( required sojourn store, string token= false, boolean haveCookies= false ) {
 		variables.store = arguments.store;
@@ -37,7 +37,7 @@ component output="false" {
 
 	boolean function load( boolean force= false ) {
 		if ( !arguments.force && this.loaded && this.modified ) {
-			//  save changes before loading new data 
+			// save changes before loading new data 
 			this.debugLog( "save changes before loading new data" );
 			variables.store.visitSave( this );
 		}
@@ -86,7 +86,7 @@ component output="false" {
 	function set( variableName name, value ) {
 		arguments.name = lCase( arguments.name );
 		if ( !this.loaded ) {
-			//  lazy load 
+			// lazy load 
 			this.load();
 		}
 	//	if( isSimpleValue( arguments.value ) ) {
@@ -123,7 +123,7 @@ component output="false" {
 		arguments.name = lCase( arguments.name );
 		this.debugLog( "remove #arguments.name#" );
 		if ( !this.loaded ) {
-			//  lazy load 
+			// lazy load 
 			this.load();
 		}
 		if ( structKeyExists( this.data, arguments.name ) ) {
@@ -143,7 +143,7 @@ component output="false" {
 	boolean function exists( variableName name ) {
 		arguments.name = lCase( arguments.name );
 		if ( !this.loaded ) {
-			//  lazy load 
+			// lazy load 
 			this.load();
 		}
 		this.debugLog( "exists #arguments.name#: #structKeyExists( this.data, arguments.name )#" );
@@ -154,7 +154,7 @@ component output="false" {
 		arguments.name = lCase( arguments.name );
 		if ( !this.loaded ) {
 			try {
-				//  lazy load 
+				// lazy load 
 				this.load();
 			} catch (any cfcatch) {
 				this.debugLog( "failed to load data, fail silently" );

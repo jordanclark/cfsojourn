@@ -11,7 +11,7 @@
 	
 	<cfset structAppend( this, arguments, true )>
 	
-	<cfset debugLog( "Init" )>
+	<cfset this.debugLog( "Init" )>
 	
 	<cfreturn this>
 </cffunction>
@@ -49,14 +49,14 @@
 >
 	<cfargument name="autoReady" type="boolean" default="false">
 	
-	<cfset debugLog( "visit start: autoReady[#arguments.autoReady#]" )>
+	<cfset this.debugLog( "visit start: autoReady[#arguments.autoReady#]" )>
 	
-	<cfset var cookieToken = importToken()>
+	<cfset var cookieToken = this.importToken()>
 	<cfset var visit = new sojournVisit( this, cookieToken, NOT structIsEmpty( cookie ) )>
 	
-	<cfif NOT isBot() AND len( cookieToken ) AND arguments.autoReady>
-		<cfset debugLog( "auto-ready data" )>
-		<cfset visitLoad( visit )>
+	<cfif NOT this.isBot() AND len( cookieToken ) AND arguments.autoReady>
+		<cfset this.debugLog( "auto-ready data" )>
+		<cfset this.visitLoad( visit )>
 	</cfif>
 	
 	<cfreturn visit>
@@ -71,17 +71,17 @@
 	<cfset var v = arguments.visit>
 
 	<cfif len( v.token )>
-		<cfset debugLog( "bake cookie #this.cookieName#" )>
+		<cfset this.debugLog( "bake cookie #this.cookieName#" )>
 		<cfcookie
 			name="#this.cookieName#"
-			value="#encodeToken( v.token )#"
+			value="#this.encodeToken( v.token )#"
 			httpOnly="true"
 			expires="#this.cookiesExpire#"
 		>
 	</cfif>
 
 	<!--- <cfif v.loaded AND v.modified> --->
-	<cfset visitSave( v )>
+	<cfset this.visitSave( v )>
 	<!--- </cfif> --->
 	
 </cffunction>
@@ -154,21 +154,21 @@
 	<cfset var local = {}>
 	<cfset local.token = "">
 	
-	<cfset debugLog( "Importing tokens" )>
+	<cfset this.debugLog( "Importing tokens" )>
 	
 	<cfloop index="local.index" list="#this.importScopes#">
 		<cfset local.scope = evaluate( local.index )>
-		<cfset debugLog( "Searching #uCase( local.index )# scope" )>
+		<cfset this.debugLog( "Searching #uCase( local.index )# scope" )>
 		
 		<cfif structKeyExists( local.scope, this.cookieName ) AND len( local.scope[ this.cookieName ] )>
 			<cfset local.token = listFirst( urlDecode( local.scope[ this.cookieName ] ), "|" )>
-			<cfif isValidToken( local.token )>
+			<cfif this.isValidToken( local.token )>
 				<!--- trim off the useragent hash --->
 				<cfset local.token = listFirst( local.token, ":" )>
-				<cfset debugLog( "Found #uCase(local.index)#.#uCase(this.cookieName)# [#local.token#]" )>
+				<cfset this.debugLog( "Found #uCase(local.index)#.#uCase(this.cookieName)# [#local.token#]" )>
 				<cfbreak>
 			<cfelse>
-				<cfset debugLog( "Invalid token '#this.cookieName#' [#local.token#] from #lCase(local.index)#" )>
+				<cfset this.debugLog( "Invalid token '#this.cookieName#' [#local.token#] from #lCase(local.index)#" )>
 				<cfset local.token = "">
 			</cfif>
 		</cfif>

@@ -229,7 +229,7 @@
 		the data will be saved at the end of the request with any other real data --->
 	<cfif this.lastVisit>
 		<cfif structKeyExists( v.data, "LASTVISIT" )>
-			<cfset debugLog( "LAST VISIT: #v.data[ 'LASTVISIT' ]#" )>
+			<cfset debugLog( "LAST VISIT: #dateTimeFormat( v.data[ 'LASTVISIT' ], 'mm/dd/yyyy h:mmtt' )#" )>
 			<!--- check if data is too old to use --->
 			<cfif this.expireHours GT 0 AND dateDiff( "H", v.data[ "LASTVISIT" ], now() ) GT this.expireHours>
 				<cfset debugLog( "Data has expired: " & dateDiff( "H", v.data[ "LASTVISIT" ], now() ) )>

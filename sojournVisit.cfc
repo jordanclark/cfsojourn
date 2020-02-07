@@ -165,7 +165,7 @@ component {
 		} else if ( isNull( this.data[ arguments.name ] ) && structKeyExists( arguments, "default" ) ) {
 			return arguments.default;
 		}
-		if ( isSimpleValue( this.data[ arguments.name ] ) ) {
+		if ( structKeyExists( this.data, arguments.name ) && isSimpleValue( this.data[ arguments.name ] ) ) {
 			this.debugLog( "get #arguments.name# [#this.data[ arguments.name ]#]" );
 		} else {
 			this.debugLog( "get #arguments.name# [complex]" );

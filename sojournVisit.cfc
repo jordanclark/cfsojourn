@@ -26,7 +26,12 @@ component {
 				request.log( arguments.input );
 			}
 		} else {
-			cftrace( text=( isSimpleValue( arguments.input ) ? arguments.input : "" ), var=arguments.input, category="visit", type="information" );
+			var info= ( isSimpleValue( arguments.input ) ? arguments.input : serializeJson( arguments.input ) );
+			cftrace(
+				var= "info"
+			,	category= "visit"
+			,	type= "information"
+			);
 		}
 		return;
 	}

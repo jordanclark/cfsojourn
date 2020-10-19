@@ -48,13 +48,16 @@
 	hint="Run this in onRequest or onRequestStart"
 >
 	<cfargument name="autoReady" type="boolean" default="false">
+	<cfargument name="token" type="string" default="">
 	
 	<cfset this.debugLog( "visit start: autoReady[#arguments.autoReady#]" )>
 	
-	<cfset var cookieToken = this.importToken()>
-	<cfset var visit = new sojournVisit( this, cookieToken, NOT structIsEmpty( cookie ) )>
+	<cfif NOT len( arguments.token )>
+		<cfset arguments.token = this.importToken()>
+	</cfif>
+	<cfset var visit = new sojournVisit( this, arguments.token, NOT structIsEmpty( cookie ) )>
 	
-	<cfif NOT this.isBot() AND len( cookieToken ) AND arguments.autoReady>
+	<cfif NOT this.isBot() AND len( arguments.token ) AND arguments.autoReady>
 		<cfset this.debugLog( "auto-ready data" )>
 		<cfset this.visitLoad( visit )>
 	</cfif>

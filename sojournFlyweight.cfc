@@ -60,7 +60,7 @@
 
 
 <cffunction name="isBot" access="public" output="false" returnType="boolean">
-	<cfif reFind( "(googlebot|slurp|msnbot|jeeves/teoma|scooter)", lCase( cgi.http_user_agent ) )>
+	<cfif reFind( "(googlebot|applebot|bingbot|duckduckgo|slurp|msnbot|jeeves/teoma|scooter)", lCase( cgi.http_user_agent ) )>
 		<cfreturn true>
 	</cfif>
 	<cfreturn false>
